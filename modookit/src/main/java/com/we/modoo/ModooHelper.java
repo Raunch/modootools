@@ -17,6 +17,8 @@ public class ModooHelper {
     private static String TAG = "ModooHelper";
     private static boolean mInited = false;
     private static Context mContext;
+    private static LoginCallback mLoginCallback;
+    private static ShareCallback mShareCallback;
 
     /**
      * 初始化接口
@@ -31,13 +33,25 @@ public class ModooHelper {
     }
 
     /**
-     *  登录接口
-     * @param type 登录类型，目前支持微信
+     * 设置登录回调
      * @param callback 回调接口
      */
-    public static void login(LoginType type, LoginCallback callback) {
+    public static void setLoginCallback(LoginCallback callback) {
+        mLoginCallback = callback;
+    }
+
+    /**
+     *  登录接口
+     * @param type 登录类型，目前支持微信
+     */
+    public static void login(LoginType type) {
         if (mInited) {
-            LoginManager.getInstance().login(type, callback);
+            if (!hasInitLoginCallback()) {
+                LogUtil.e(TAG, "please set login callback first");
+                Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_login_callback_not_set"), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            LoginManager.getInstance().login(type, mLoginCallback);
         } else {
             if (mContext == null) {
                 LogUtil.e(TAG, "Please first invoke the init");
@@ -48,16 +62,44 @@ public class ModooHelper {
     }
 
     /**
+     * 设置分享的回调接口
+     * @param callback 回调接口
+     */
+    public static void registerShareCallback(ShareCallback callback) {
+        mShareCallback = callback;
+    }
+
+    private static boolean hasInitShareCallback() {
+        if (mShareCallback == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private static boolean hasInitLoginCallback() {
+        if (mLoginCallback == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
      * 分享文字
      *
      * @param app      应用类型
      * @param type     分享或收藏的目标场景
      * @param text     分享的文字内容
-     * @param callback 分享回调接口
      */
-    public static void shareText(ShareType app, int type, String text, ShareCallback callback) {
+    public static void shareText(ShareType app, int type, String text) {
         if (mInited) {
-            ShareManager.getInstance().shareText(app, type, text, callback);
+            if (!hasInitShareCallback()) {
+                LogUtil.e(TAG, "please set share callback first");
+                Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_share_callback_not_set"), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            ShareManager.getInstance().shareText(app, type, text, mShareCallback);
         } else {
             Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_init_first"), Toast.LENGTH_SHORT).show();
         }
@@ -68,11 +110,15 @@ public class ModooHelper {
      * @param app      应用类型
      * @param type     分享或收藏的目标场景
      * @param path     分享图片的路径
-     * @param callback 分享回调接口
      */
-    public static void shareImageByPath(ShareType app, int type, String path, ShareCallback callback) {
+    public static void shareImageByPath(ShareType app, int type, String path) {
         if (mInited) {
-            ShareManager.getInstance().shareImageByPath(app, type, path, callback);
+            if (!hasInitShareCallback()) {
+                LogUtil.e(TAG, "please set share callback first");
+                Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_share_callback_not_set"), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            ShareManager.getInstance().shareImageByPath(app, type, path, mShareCallback);
         } else {
             Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_init_first"), Toast.LENGTH_SHORT).show();
         }
@@ -82,11 +128,15 @@ public class ModooHelper {
      * @param app      应用类型
      * @param type     分享或收藏的目标场景
      * @param id       分享图片的资源id
-     * @param callback 分享回调接口
      */
-    public static void shareImageByResId(ShareType app, int type, int id, ShareCallback callback) {
+    public static void shareImageByResId(ShareType app, int type, int id) {
         if (mInited) {
-            ShareManager.getInstance().shareImageByResId(app, type, id, callback);
+            if (!hasInitShareCallback()) {
+                LogUtil.e(TAG, "please set share callback first");
+                Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_share_callback_not_set"), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            ShareManager.getInstance().shareImageByResId(app, type, id, mShareCallback);
         } else {
             Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_init_first"), Toast.LENGTH_SHORT).show();
         }
@@ -100,11 +150,15 @@ public class ModooHelper {
      * @param title       音乐的标题
      * @param description 音乐的描述
      * @param path        缩略图资源路径
-     * @param callback    分享回调接口
      */
-    public static void shareMusic(ShareType app, int type, String url, String title, String description, String path, ShareCallback callback) {
+    public static void shareMusic(ShareType app, int type, String url, String title, String description, String path) {
         if (mInited) {
-            ShareManager.getInstance().shareMusic(app, type, url, title, description, path, callback);
+            if (!hasInitShareCallback()) {
+                LogUtil.e(TAG, "please set share callback first");
+                Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_share_callback_not_set"), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            ShareManager.getInstance().shareMusic(app, type, url, title, description, path, mShareCallback);
         } else {
             Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_init_first"), Toast.LENGTH_SHORT).show();
         }
@@ -118,11 +172,15 @@ public class ModooHelper {
      * @param title       视频的标题
      * @param description 视频的描述
      * @param id          缩略图资源id
-     * @param callback    分享回调接口
      */
-    public static void shareVideo(ShareType app, int type, String url, String title, String description, int id, ShareCallback callback) {
+    public static void shareVideo(ShareType app, int type, String url, String title, String description, int id) {
         if (mInited) {
-            ShareManager.getInstance().shareVideo(app, type, url, title, description, id, callback);
+            if (!hasInitShareCallback()) {
+                LogUtil.e(TAG, "please set share callback first");
+                Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_share_callback_not_set"), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            ShareManager.getInstance().shareVideo(app, type, url, title, description, id, mShareCallback);
         } else {
             Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_init_first"), Toast.LENGTH_SHORT).show();
         }
@@ -136,11 +194,15 @@ public class ModooHelper {
      * @param title       音乐的标题
      * @param description 音乐的描述
      * @param id          缩略图资源id
-     * @param callback    分享回调接口
      */
-    public static void shareMusic(ShareType app, int type, String url, String title, String description, int id, ShareCallback callback) {
+    public static void shareMusic(ShareType app, int type, String url, String title, String description, int id) {
         if (mInited) {
-            ShareManager.getInstance().shareMusic(app, type, url, title, description, id, callback);
+            if (!hasInitShareCallback()) {
+                LogUtil.e(TAG, "please set share callback first");
+                Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_share_callback_not_set"), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            ShareManager.getInstance().shareMusic(app, type, url, title, description, id, mShareCallback);
         } else {
             Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_init_first"), Toast.LENGTH_SHORT).show();
         }
@@ -154,11 +216,15 @@ public class ModooHelper {
      * @param title       视频的标题
      * @param description 视频的描述
      * @param path        缩略图资源路径
-     * @param callback    分享回调接口
      */
-    public static void shareVideo(ShareType app, int type, String url, String title, String description, String path, ShareCallback callback) {
+    public static void shareVideo(ShareType app, int type, String url, String title, String description, String path) {
         if (mInited) {
-            ShareManager.getInstance().shareVideo(app, type, url, title, description, path, callback);
+            if (!hasInitShareCallback()) {
+                LogUtil.e(TAG, "please set share callback first");
+                Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_share_callback_not_set"), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            ShareManager.getInstance().shareVideo(app, type, url, title, description, path, mShareCallback);
         } else {
             Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_init_first"), Toast.LENGTH_SHORT).show();
         }
@@ -172,11 +238,15 @@ public class ModooHelper {
      * @param title       分享网页的标题
      * @param description 分享网页的描述
      * @param path        缩略图资源路径
-     * @param callback    分享回调接口
      */
-    public static void shareWebpage(ShareType app, int type, String url, String title, String description, String path, ShareCallback callback) {
+    public static void shareWebpage(ShareType app, int type, String url, String title, String description, String path) {
         if (mInited) {
-            ShareManager.getInstance().shareWebpage(app, type, url, title, description, path, callback);
+            if (!hasInitShareCallback()) {
+                LogUtil.e(TAG, "please set share callback first");
+                Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_share_callback_not_set"), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            ShareManager.getInstance().shareWebpage(app, type, url, title, description, path, mShareCallback);
         } else {
             Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_init_first"), Toast.LENGTH_SHORT).show();
         }
@@ -189,11 +259,10 @@ public class ModooHelper {
      * @param title       分享网页的标题
      * @param description 分享网页的描述
      * @param id          缩略图资源id
-     * @param callback    分享回调接口
      */
-    public static void shareWebpage(ShareType app, int type, String url, String title, String description, int id, ShareCallback callback) {
+    public static void shareWebpage(ShareType app, int type, String url, String title, String description, int id) {
         if (mInited) {
-            ShareManager.getInstance().shareWebpage(app, type, url, title, description, id, callback);
+            ShareManager.getInstance().shareWebpage(app, type, url, title, description, id, mShareCallback);
         } else {
             Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_init_first"), Toast.LENGTH_SHORT).show();
         }

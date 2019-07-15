@@ -9,4 +9,7 @@
     <string name="modoo_share_wexin_cancel">微信分享取消</string>
     <string name="modoo_share_wexin_failed">微信分享失败</string>
 
+    <string name="modoo_login_callback_not_set">请先设置登录回调接口</string>
+    <string name="modoo_share_callback_not_set">请先设置分享回调接口</string>
+
 </resources>

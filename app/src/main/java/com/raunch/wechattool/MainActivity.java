@@ -102,8 +102,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         if (view.getId() == R.id.init) {
             //初始化
             ModooHelper.init(MainActivity.this);
-        } else if (view.getId() ==R.id.login) {
-            ModooHelper.login(LoginType.Wechat, new LoginCallback() {
+            ModooHelper.setLoginCallback(new LoginCallback() {
                 @Override
                 public void loginSuccess(String info) {
                     Toast.makeText(MainActivity.this, info, Toast.LENGTH_SHORT).show();
@@ -119,50 +118,53 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                     Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
                 }
             });
+            ModooHelper.registerShareCallback(mCallback);
+        } else if (view.getId() ==R.id.login) {
+            ModooHelper.login(LoginType.Wechat);
         } else if (view.getId() == R.id.share_image_one) {
             //分享图片，通过资源id方式
-            ModooHelper.shareImageByResId(ShareType.WeChat, mShareType, R.mipmap.xuanchuan,  mCallback);
+            ModooHelper.shareImageByResId(ShareType.WeChat, mShareType, R.mipmap.xuanchuan);
         } else if (view.getId() == R.id.share_image_two) {
             if (!hasInitialize()) {
                 Toast.makeText(getBaseContext(), "No image found", Toast.LENGTH_SHORT).show();
                 return;
             }
             //分享图片，通过路径方式
-            ModooHelper.shareImageByPath(ShareType.WeChat, mShareType, mImagePath,  mCallback);
+            ModooHelper.shareImageByPath(ShareType.WeChat, mShareType, mImagePath);
 
         } else if (view.getId() == R.id.share_music_one) {
             //分享音乐，通过资源id方式
-            ModooHelper.shareMusic(ShareType.WeChat, mShareType, "https://y.qq.com/n/yqq/song/002JbQfb2Lh1uI.html", "心的形状", "《这个杀手不太冷》电影片尾曲", R.mipmap.test_icon, mCallback);
+            ModooHelper.shareMusic(ShareType.WeChat, mShareType, "https://y.qq.com/n/yqq/song/002JbQfb2Lh1uI.html", "心的形状", "《这个杀手不太冷》电影片尾曲", R.mipmap.test_icon);
         } else if (view.getId() == R.id.share_music_two) {
             if (!hasInitialize()) {
                 Toast.makeText(getBaseContext(), "No image found", Toast.LENGTH_SHORT).show();
                 return;
             }
             //分享音乐，通过资源路径方式
-            ModooHelper.shareMusic(ShareType.WeChat, mShareType, "https://y.qq.com/n/yqq/song/002JbQfb2Lh1uI.html", "心的形状", "《这个杀手不太冷》电影片尾曲", mImagePath, mCallback);
+            ModooHelper.shareMusic(ShareType.WeChat, mShareType, "https://y.qq.com/n/yqq/song/002JbQfb2Lh1uI.html", "心的形状", "《这个杀手不太冷》电影片尾曲", mImagePath);
         } else if (view.getId() == R.id.share_video_one) {
             //分享视频，通过资源id方式
-            ModooHelper.shareVideo(ShareType.WeChat, mShareType, "https://y.qq.com/n/yqq/mv/v/b0026tkjv58.html", "来不及勇敢", "《昨日青空》电影插曲", R.mipmap.test_icon, mCallback);
+            ModooHelper.shareVideo(ShareType.WeChat, mShareType, "https://y.qq.com/n/yqq/mv/v/b0026tkjv58.html", "来不及勇敢", "《昨日青空》电影插曲", R.mipmap.test_icon);
         } else if (view.getId() == R.id.share_video_two) {
             if (!hasInitialize()) {
                 Toast.makeText(getBaseContext(), "No image found", Toast.LENGTH_SHORT).show();
                 return;
             }
             //分享视频，通过路径方式
-            ModooHelper.shareVideo(ShareType.WeChat, mShareType, "https://y.qq.com/n/yqq/mv/v/b0026tkjv58.html", "来不及勇敢", "《昨日青空》电影插曲", mImagePath, mCallback);
+            ModooHelper.shareVideo(ShareType.WeChat, mShareType, "https://y.qq.com/n/yqq/mv/v/b0026tkjv58.html", "来不及勇敢", "《昨日青空》电影插曲", mImagePath);
         } else if (view.getId() == R.id.share_webpage_one) {
             //分享网页，通过资源id方式
-            ModooHelper.shareWebpage(ShareType.WeChat, mShareType,  "http://zjtx.moyoi.com/", "战箭天下", "一起来射射射", R.mipmap.test_icon, mCallback);
+            ModooHelper.shareWebpage(ShareType.WeChat, mShareType,  "http://zjtx.moyoi.com/", "战箭天下", "一起来射射射", R.mipmap.test_icon);
         } else if (view.getId() == R.id.share_webpage_two) {
             if (!hasInitialize()) {
                 Toast.makeText(getBaseContext(), "No image found", Toast.LENGTH_SHORT).show();
                 return;
             }
             //分享网页，通过路径方式
-            ModooHelper.shareWebpage(ShareType.WeChat, mShareType,  "http://zjtx.moyoi.com/", "战箭天下", "一起来射射射", mImagePath, mCallback);
+            ModooHelper.shareWebpage(ShareType.WeChat, mShareType,  "http://zjtx.moyoi.com/", "战箭天下", "一起来射射射", mImagePath);
         } else if (view.getId() == R.id.share_text) {
             //分享文字
-            ModooHelper.shareText(ShareType.WeChat, mShareType, "大家一起来玩战箭天下吧", mCallback);
+            ModooHelper.shareText(ShareType.WeChat, mShareType, "大家一起来玩战箭天下吧");
         }
     }
 
