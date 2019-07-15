@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF888888" />
+
+        <TextView
+            android:id="@+id/init"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:drawable/list_selector_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="初始化"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF888888" />
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:drawable/list_selector_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="登录"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:background="@android:drawable/list_selector_background"
+            android:gravity="center"
+            android:text="选择分享类型"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <RadioGroup
+            android:id="@+id/wechat_select_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/wechat_select_session"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发送到聊天界面" />
+
+            <RadioButton
+                android:id="@+id/wechat_select_timeline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发送到朋友圈" />
+
+            <RadioButton
+                android:id="@+id/wechat_select_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加到微信收藏" />
+
+        </RadioGroup>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF888888" />
+
+        <TextView
+            android:id="@+id/share_text"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:drawable/list_selector_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="分享文字"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF888888" />
+
+
+        <TextView
+            android:id="@+id/share_music_one"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:drawable/list_selector_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="分享音乐1"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF888888" />
+
+        <TextView
+            android:id="@+id/share_music_two"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:drawable/list_selector_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="分享音乐2"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF888888" />
+
+        <TextView
+            android:id="@+id/share_video_one"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:drawable/list_selector_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="分享视频1"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF888888" />
+
+        <TextView
+            android:id="@+id/share_video_two"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:drawable/list_selector_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="分享视频2"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF888888" />
+
+        <TextView
+            android:id="@+id/share_webpage_one"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:drawable/list_selector_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="分享网页1"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF888888" />
+
+        <TextView
+            android:id="@+id/share_webpage_two"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:drawable/list_selector_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="分享网页2"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF888888" />
+
+        <TextView
+            android:id="@+id/share_image_one"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:drawable/list_selector_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="分享图片1"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF888888" />
+
+        <TextView
+            android:id="@+id/share_image_two"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:drawable/list_selector_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="分享图片2"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FF888888" />
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="modoo_init_first">SDK未初始化</string>
+    <string name="modoo_login_wexin_success">微信授权成功</string>
+    <string name="modoo_login_wexin_cancel">微信授权取消</string>
+    <string name="modoo_login_wexin_failed">微信授权失败</string>
+
+    <string name="modoo_share_wexin_success">微信分享成功</string>
+    <string name="modoo_share_wexin_cancel">微信分享取消</string>
+    <string name="modoo_share_wexin_failed">微信分享失败</string>
+
+</resources>
