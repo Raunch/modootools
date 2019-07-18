@@ -1,10 +1,14 @@
 package com.we.modoo.share;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXImageObject;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
@@ -59,10 +63,18 @@ public class WechatShare implements IShare {
         LogUtil.d(TAG, "wechat share init here");
         mInited = false;
         mContext = context;
-        String appId = ResUtils.getString(context, "wx_app_id");
+        final String appId = ResUtils.getString(context, "wx_app_id");
         if (!TextUtils.isEmpty(appId)) {
             mApi = WXAPIFactory.createWXAPI(mContext, appId, false);
             mApi.registerApp(appId);
+            context.registerReceiver(new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    // 将该app注册到微信
+                    LogUtil.d(TAG, "update weixin");
+                    mApi.registerApp(appId);
+                }
+            }, new IntentFilter(ConstantsAPI.ACTION_REFRESH_WXAPP));
             mInited = true;
         } else {
             LogUtil.e(TAG, "get app id failed");

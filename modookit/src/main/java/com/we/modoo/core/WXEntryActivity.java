@@ -31,7 +31,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "on create here");
+        LogUtil.d(TAG, "on create here");
         int id = getApplication().getResources().getIdentifier("wx_app_id", "string", getPackageName());
         String appId = getResources().getString(id);
         api = WXAPIFactory.createWXAPI(this, appId, true);
@@ -39,7 +39,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         try {
             api.handleIntent(getIntent(), this);
         } catch (Exception e) {
-            Log.d(TAG, "go here err");
+            LogUtil.d(TAG, "go here err");
             e.printStackTrace();
         }
     }
