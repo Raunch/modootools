@@ -5,21 +5,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.we.modoo.callback.LoginCallback;
+import com.we.modoo.modoo.R;
 import com.we.modoo.utils.LogUtil;
+import com.we.modoo.utils.ResUtils;
 
 public class WechatLogin implements ILogin{
     private final String TAG = "WechatLogin";
+
+    private final String WeChatName = "com.tencent.mm";
 
     private  String mAppID;
     private static WechatLogin mInstance;
     private IWXAPI mApi;
     private boolean mInited;
+
+    private Context mContext;
 
     private LoginCallback mCallback;
 
@@ -40,6 +47,7 @@ public class WechatLogin implements ILogin{
 
     public void init(Context context) {
         try {
+            mContext = context;
             int appId = context.getResources().getIdentifier("wx_app_id", "string", context.getPackageName());
             mAppID = context.getResources().getString(appId);
             mApi = WXAPIFactory.createWXAPI(context, mAppID, true);
@@ -68,6 +76,12 @@ public class WechatLogin implements ILogin{
     @Override
     public void login(LoginCallback callback) {
         mCallback = callback;
+        if (!hasInstalled(mContext, WeChatName)) {
+            Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_wechat_not_install"), Toast.LENGTH_SHORT).show();
+            callback.loginFailed("wechat not installed");
+            return;
+        }
+
         final SendAuth.Req req = new SendAuth.Req();
         req.scope = "snsapi_userinfo";
         req.state = "wechat_sdk_game_login";
@@ -81,5 +95,19 @@ public class WechatLogin implements ILogin{
         } else {
             mCallback.loginFailed(result);
         }
+    }
+
+    /**
+     * 根据apk的包名判断apk是否安装了；
+     */
+    private  boolean hasInstalled(Context context, String pkgName) {
+        boolean installed;
+        try {
+            context.getPackageManager().getPackageInfo(pkgName, 0);
+            installed = true;
+        } catch (Exception | Error e) {
+            installed = false;
+        }
+        return installed;
     }
 }

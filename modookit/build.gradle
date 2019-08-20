@@ -33,7 +33,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: uri("./Upload-VegaSdk"))
-            pom.version = "1.0.3"
+            pom.version = "1.0.5"
             pom.artifactId = "modoosdk"
             pom.groupId = "com.we.modoo"
             pom.name = "Modoosdk"

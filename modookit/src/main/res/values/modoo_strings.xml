@@ -12,4 +12,6 @@
     <string name="modoo_login_callback_not_set">请先设置登录回调接口</string>
     <string name="modoo_share_callback_not_set">请先设置分享回调接口</string>
 
+    <string name="modoo_wechat_not_install">微信未安装，请先安装微信</string>
+
 </resources>
