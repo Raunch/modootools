@@ -22,6 +22,7 @@ public class ModooHelper {
 
     /**
      * 初始化接口
+     *
      * @param context 上下文
      */
     public static void init(Context context) {
@@ -34,6 +35,7 @@ public class ModooHelper {
 
     /**
      * 设置登录回调
+     *
      * @param callback 回调接口
      */
     public static void setLoginCallback(LoginCallback callback) {
@@ -41,7 +43,8 @@ public class ModooHelper {
     }
 
     /**
-     *  登录接口
+     * 登录接口
+     *
      * @param type 登录类型，目前支持微信
      */
     public static void login(LoginType type) {
@@ -63,6 +66,7 @@ public class ModooHelper {
 
     /**
      * 设置分享的回调接口
+     *
      * @param callback 回调接口
      */
     public static void registerShareCallback(ShareCallback callback) {
@@ -88,9 +92,9 @@ public class ModooHelper {
     /**
      * 分享文字
      *
-     * @param app      应用类型
-     * @param type     分享或收藏的目标场景
-     * @param text     分享的文字内容
+     * @param app  应用类型
+     * @param type 分享或收藏的目标场景
+     * @param text 分享的文字内容
      */
     public static void shareText(ShareType app, int type, String text) {
         if (mInited) {
@@ -107,9 +111,10 @@ public class ModooHelper {
 
     /**
      * 分享图片
-     * @param app      应用类型
-     * @param type     分享或收藏的目标场景
-     * @param path     分享图片的路径
+     *
+     * @param app  应用类型
+     * @param type 分享或收藏的目标场景
+     * @param path 分享图片的路径
      */
     public static void shareImageByPath(ShareType app, int type, String path) {
         if (mInited) {
@@ -125,9 +130,9 @@ public class ModooHelper {
     }
 
     /**
-     * @param app      应用类型
-     * @param type     分享或收藏的目标场景
-     * @param id       分享图片的资源id
+     * @param app  应用类型
+     * @param type 分享或收藏的目标场景
+     * @param id   分享图片的资源id
      */
     public static void shareImageByResId(ShareType app, int type, int id) {
         if (mInited) {
@@ -144,6 +149,7 @@ public class ModooHelper {
 
     /**
      * 分享音乐
+     *
      * @param app         应用类型
      * @param type        分享或收藏的目标场景
      * @param url         分享音乐的url
@@ -166,6 +172,7 @@ public class ModooHelper {
 
     /**
      * 视频分享
+     *
      * @param app         应用类型
      * @param type        分享或收藏的目标场景
      * @param url         分享视频的url
@@ -188,6 +195,7 @@ public class ModooHelper {
 
     /**
      * 音乐分享
+     *
      * @param app         应用类型
      * @param type        分享或收藏的目标场景
      * @param url         分享音乐的url
@@ -210,6 +218,7 @@ public class ModooHelper {
 
     /**
      * 视频分享
+     *
      * @param app         应用类型
      * @param type        分享或收藏的目标场景
      * @param url         分享视频的url
@@ -232,6 +241,7 @@ public class ModooHelper {
 
     /**
      * 网页分享
+     *
      * @param app         应用类型
      * @param type        分享或收藏的目标场景
      * @param url         分享网页链接
@@ -265,6 +275,14 @@ public class ModooHelper {
             ShareManager.getInstance().shareWebpage(app, type, url, title, description, id, mShareCallback);
         } else {
             Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_init_first"), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static int getDefaultIconRes(String name) {
+        if (mContext.getResources().getIdentifier(name, "drawable", mContext.getPackageName()) == 0) {
+            return mContext.getResources().getIdentifier(name, "mipmap", mContext.getPackageName());
+        } else {
+            return mContext.getResources().getIdentifier(name, "drawable", mContext.getPackageName());
         }
     }
 
