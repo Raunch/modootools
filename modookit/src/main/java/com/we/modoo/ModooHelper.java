@@ -278,6 +278,11 @@ public class ModooHelper {
         }
     }
 
+    /**
+     * 根据名称从RES中获取对应资源ID
+     * @param name 资源名称
+     * @return 资源对应的ID
+     */
     public static int getDefaultIconRes(String name) {
         if (mContext.getResources().getIdentifier(name, "drawable", mContext.getPackageName()) == 0) {
             return mContext.getResources().getIdentifier(name, "mipmap", mContext.getPackageName());
