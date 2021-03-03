@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/modookit/modookit.iml" filepath="$PROJECT_DIR$/modookit/modookit.iml" />
-      <module fileurl="file://$PROJECT_DIR$/modootools.iml" filepath="$PROJECT_DIR$/modootools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modootools.iml" filepath="$PROJECT_DIR$/.idea/modules/modootools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/modootools.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/modootools.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modookit/modootools.modookit.iml" filepath="$PROJECT_DIR$/.idea/modules/modookit/modootools.modookit.iml" />
     </modules>
   </component>
 </project>

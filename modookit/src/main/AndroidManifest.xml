@@ -17,5 +17,10 @@
             android:launchMode="singleTop"
             android:taskAffinity="${applicationId}"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity-alias
+            android:name="${applicationId}.wxapi.WXEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.we.modoo.core.WXEntryActivity" />
     </application>
 </manifest>

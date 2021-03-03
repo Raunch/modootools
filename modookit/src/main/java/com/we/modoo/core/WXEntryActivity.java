@@ -78,6 +78,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     case WECHAT_TPYE_LOGIN:
                         LogUtil.d(TAG, "wexin login cancel");
                         Toast.makeText(this, ResUtils.getStringId(this, "modoo_login_wexin_cancel"), Toast.LENGTH_SHORT).show();
+                        WechatLogin.getInstance().handleResult(false, "cancel");
                         break;
                     case WECHAT_TYPE_SHARE:
                         LogUtil.d(TAG, "wexin share cancel");
@@ -91,6 +92,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     case WECHAT_TPYE_LOGIN:
                         LogUtil.d(TAG, "wexin login denied");
                         Toast.makeText(this, ResUtils.getStringId(this, "modoo_login_wexin_failed"), Toast.LENGTH_SHORT).show();
+                        WechatLogin.getInstance().handleResult(false, "denied");
                         break;
                     case WECHAT_TYPE_SHARE:
                         LogUtil.d(TAG, "wexin share denied");
@@ -104,6 +106,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     case WECHAT_TPYE_LOGIN:
                         LogUtil.d(TAG, "wexin login unsupport");
                         Toast.makeText(this, ResUtils.getStringId(this, "modoo_login_wexin_failed"), Toast.LENGTH_SHORT).show();
+                        WechatLogin.getInstance().handleResult(false, "unsupport");
                         break;
                     case WECHAT_TYPE_SHARE:
                         LogUtil.d(TAG, "wexin share unsupport");
@@ -117,6 +120,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     case WECHAT_TPYE_LOGIN:
                         LogUtil.d(TAG, "wexin login unknown");
                         Toast.makeText(this, ResUtils.getStringId(this, "modoo_login_wexin_failed"), Toast.LENGTH_SHORT).show();
+                        WechatLogin.getInstance().handleResult(false, "failed");
                         break;
                     case WECHAT_TYPE_SHARE:
                         LogUtil.d(TAG, "wexin share unknown");

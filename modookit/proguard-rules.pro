@@ -1,3 +1,4 @@
+-flattenpackagehierarchy  'com.we.modoo'
 # proguard for tencnet
 -keep class com.tencent.mm.opensdk.** { *; }
 
@@ -11,15 +12,12 @@
 
 -keep class com.we.modoo.ModooHelper {*;}
 
--keep class com.we.modoo.core.WXEntryActivity {*;}
 
 -keep class com.we.modoo.core.LoginType {*;}
 
 -keep class com.we.modoo.core.ShareType {*;}
 
--keepclassmembers class * extends android.app.Activity {
-   public void *(android.view.View);
-}
+-keep class * extends android.app.Activity
 
 -keepclassmembers enum * {
     public static **[] values();
