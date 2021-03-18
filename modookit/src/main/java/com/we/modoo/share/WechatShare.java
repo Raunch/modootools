@@ -209,6 +209,27 @@ public class WechatShare implements IShare {
         mApi.sendReq(req);
     }
 
+    public void shareImageBytes(int type, byte[] bytes, ShareCallback callback) {
+        mShareCallback = callback;
+        Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        WXImageObject imgObj = new WXImageObject(bmp);
+        WXMediaMessage msg = new WXMediaMessage();
+        msg.mediaObject = imgObj;
+
+        Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, THUMB_SIZE, THUMB_SIZE, true);
+        bmp.recycle();
+
+        msg.setThumbImage(thumbBmp);
+        thumbBmp.recycle();
+        //msg.thumbData = ShareUtil.bmpToByteArray(thumbBmp, true);
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = buildTransaction("img");
+        req.message = msg;
+        req.scene = getWechatShareType(type);
+        mApi.sendReq(req);
+    }
+
     /**
      * 音乐类型分享
      * @param type 分享或收藏的目标场景

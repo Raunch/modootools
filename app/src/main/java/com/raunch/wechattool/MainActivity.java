@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +21,7 @@ import com.we.modoo.share.IShare;
 
 import java.io.File;
 
-public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
+public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
     private static final String TAG = "sdkdemo";
     RadioGroup mSelectGroup;
     private String mImagePath = "";
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 }
             });
             ModooHelper.registerShareCallback(mCallback);
-        } else if (view.getId() ==R.id.login) {
+        } else if (view.getId() == R.id.login) {
             ModooHelper.login(LoginType.Wechat);
         } else if (view.getId() == R.id.share_image_one) {
             //分享图片，通过资源id方式
@@ -131,7 +132,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             }
             //分享图片，通过路径方式
             ModooHelper.shareImageByPath(ShareType.WeChat, mShareType, mImagePath);
-
         } else if (view.getId() == R.id.share_music_one) {
             //分享音乐，通过资源id方式
             ModooHelper.shareMusic(ShareType.WeChat, mShareType, "https://y.qq.com/n/yqq/song/002JbQfb2Lh1uI.html", "心的形状", "《这个杀手不太冷》电影片尾曲", R.mipmap.test_icon);
@@ -154,14 +154,14 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             ModooHelper.shareVideo(ShareType.WeChat, mShareType, "https://y.qq.com/n/yqq/mv/v/b0026tkjv58.html", "来不及勇敢", "《昨日青空》电影插曲", mImagePath);
         } else if (view.getId() == R.id.share_webpage_one) {
             //分享网页，通过资源id方式
-            ModooHelper.shareWebpage(ShareType.WeChat, mShareType,  "http://zjtx.moyoi.com/", "战箭天下", "一起来射射射", R.mipmap.test_icon);
+            ModooHelper.shareWebpage(ShareType.WeChat, mShareType, "http://zjtx.moyoi.com/", "战箭天下", "一起来射射射", R.mipmap.test_icon);
         } else if (view.getId() == R.id.share_webpage_two) {
             if (!hasInitialize()) {
                 Toast.makeText(getBaseContext(), "No image found", Toast.LENGTH_SHORT).show();
                 return;
             }
             //分享网页，通过路径方式
-            ModooHelper.shareWebpage(ShareType.WeChat, mShareType,  "http://zjtx.moyoi.com/", "战箭天下", "一起来射射射", mImagePath);
+            ModooHelper.shareWebpage(ShareType.WeChat, mShareType, "http://zjtx.moyoi.com/", "战箭天下", "一起来射射射", mImagePath);
         } else if (view.getId() == R.id.share_text) {
             //分享文字
             ModooHelper.shareText(ShareType.WeChat, mShareType, "大家一起来玩战箭天下吧");
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 mShareType = IShare.SHARE_TYPE_SESSION;
                 break;
             case R.id.wechat_select_timeline:
-                mShareType =IShare.SHARE_TYPE_TIMELINE;
+                mShareType = IShare.SHARE_TYPE_TIMELINE;
                 break;
             case R.id.wechat_select_favorite:
                 mShareType = IShare.SHARE_TYPE_FAVORITE;

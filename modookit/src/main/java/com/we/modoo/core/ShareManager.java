@@ -46,7 +46,7 @@ public class ShareManager {
         return mShare.hasInited();
     }
 
-    public void shareText (ShareType app, int type, String text, ShareCallback callback) {
+    public void shareText(ShareType app, int type, String text, ShareCallback callback) {
         if (!hasPluginInited(app)) {
             LogUtil.e(TAG, "share init err");
             return;
@@ -63,7 +63,7 @@ public class ShareManager {
         mShare.shareImageByPath(type, path, callback);
     }
 
-    public void shareImageByResId(ShareType app, int type, int id, ShareCallback callback){
+    public void shareImageByResId(ShareType app, int type, int id, ShareCallback callback) {
         if (!hasPluginInited(app)) {
             LogUtil.e(TAG, "share init err");
             return;
@@ -71,7 +71,17 @@ public class ShareManager {
         mShare.shareImageByResId(type, id, callback);
     }
 
-    public void shareMusic(ShareType app, int type ,String url, String title, String description, String path, ShareCallback callback){
+    public void shareImageBytes(ShareType app, int type, byte[] bytes, ShareCallback callback) {
+        if (!hasPluginInited(app)) {
+            LogUtil.e(TAG, "share init err");
+            return;
+        }
+        if (mShare instanceof WechatShare) {
+            WechatShare.getInstance().shareImageBytes(type, bytes, callback);
+        }
+    }
+
+    public void shareMusic(ShareType app, int type, String url, String title, String description, String path, ShareCallback callback) {
         if (!hasPluginInited(app)) {
             LogUtil.e(TAG, "share init err");
             return;
@@ -84,10 +94,10 @@ public class ShareManager {
             LogUtil.e(TAG, "share init err");
             return;
         }
-        mShare.shareVideo(type, url ,title, description, id, callback);
+        mShare.shareVideo(type, url, title, description, id, callback);
     }
 
-    public void shareMusic(ShareType app, int type, String url, String title, String description, int id, ShareCallback callback){
+    public void shareMusic(ShareType app, int type, String url, String title, String description, int id, ShareCallback callback) {
         if (!hasPluginInited(app)) {
             LogUtil.e(TAG, "share init err");
             return;
@@ -95,7 +105,7 @@ public class ShareManager {
         mShare.shareMusic(type, url, title, description, id, callback);
     }
 
-    public void shareVideo(ShareType app, int type, String url, String title, String description, String path, ShareCallback callback){
+    public void shareVideo(ShareType app, int type, String url, String title, String description, String path, ShareCallback callback) {
         if (!hasPluginInited(app)) {
             LogUtil.e(TAG, "share init err");
             return;
@@ -103,7 +113,7 @@ public class ShareManager {
         mShare.shareVideo(type, url, title, description, path, callback);
     }
 
-    public void shareWebpage(ShareType app, int type, String url, String title, String description, String path, ShareCallback callback){
+    public void shareWebpage(ShareType app, int type, String url, String title, String description, String path, ShareCallback callback) {
         if (!hasPluginInited(app)) {
             LogUtil.e(TAG, "share init err");
             return;

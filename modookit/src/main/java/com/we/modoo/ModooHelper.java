@@ -148,6 +148,24 @@ public class ModooHelper {
     }
 
     /**
+     * @param app   应用类型
+     * @param type  分享或收藏的目标场景
+     * @param bytes 图片 bytes 信息
+     */
+    public static void shareImageBytes(ShareType app, int type, byte[] bytes) {
+        if (mInited) {
+            if (!hasInitShareCallback()) {
+                LogUtil.e(TAG, "please set share callback first");
+                Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_share_callback_not_set"), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            ShareManager.getInstance().shareImageBytes(app, type, bytes, mShareCallback);
+        } else {
+            Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_init_first"), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
      * 分享音乐
      *
      * @param app         应用类型
@@ -280,6 +298,7 @@ public class ModooHelper {
 
     /**
      * 根据名称从RES中获取对应资源ID
+     *
      * @param name 资源名称
      * @return 资源对应的ID
      */
