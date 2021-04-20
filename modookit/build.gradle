@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 109
+        versionName "1.0.9"
 
         consumerProguardFiles 'proguard-rules.pro'
     }
@@ -33,7 +33,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: uri("./Upload-VegaSdk"))
-            pom.version = "1.0.8"
+            pom.version = "1.0.9"
             pom.artifactId = "modoosdk"
             pom.groupId = "com.we.modoo"
             pom.name = "Modoosdk"
