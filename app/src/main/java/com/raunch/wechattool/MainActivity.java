@@ -1,10 +1,9 @@
 package com.raunch.wechattool;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +20,7 @@ import com.we.modoo.share.IShare;
 
 import java.io.File;
 
-public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends Activity implements RadioGroup.OnCheckedChangeListener {
     private static final String TAG = "sdkdemo";
     RadioGroup mSelectGroup;
     private String mImagePath = "";

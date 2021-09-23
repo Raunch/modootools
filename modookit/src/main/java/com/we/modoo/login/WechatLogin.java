@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
@@ -12,16 +11,15 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.we.modoo.callback.LoginCallback;
-import com.we.modoo.modoo.R;
 import com.we.modoo.utils.LogUtil;
 import com.we.modoo.utils.ResUtils;
 
-public class WechatLogin implements ILogin{
+public class WechatLogin implements ILogin {
     private final String TAG = "WechatLogin";
 
     private final String WeChatName = "com.tencent.mm";
 
-    private  String mAppID;
+    private String mAppID;
     private static WechatLogin mInstance;
     private IWXAPI mApi;
     private boolean mInited;
@@ -100,12 +98,15 @@ public class WechatLogin implements ILogin{
     /**
      * 根据apk的包名判断apk是否安装了；
      */
-    private  boolean hasInstalled(Context context, String pkgName) {
-        boolean installed;
+    private boolean hasInstalled(Context context, String pkgName) {
+        boolean installed = false;
         try {
-            context.getPackageManager().getPackageInfo(pkgName, 0);
-            installed = true;
+            Intent launcher = context.getPackageManager().getLaunchIntentForPackage(pkgName);
+            if (launcher != null) {
+                installed = true;
+            }
         } catch (Exception | Error e) {
+            e.printStackTrace();
             installed = false;
         }
         return installed;
