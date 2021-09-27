@@ -20,6 +20,7 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://dl.bintray.com/wesdk/Modoosdk' }
+        maven { url "https://bitbucket.org/maven-gametools/gametools/raw/release" }
         
     }
 }

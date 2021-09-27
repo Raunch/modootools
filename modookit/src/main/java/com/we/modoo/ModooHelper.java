@@ -20,6 +20,8 @@ public class ModooHelper {
     private static LoginCallback mLoginCallback;
     private static ShareCallback mShareCallback;
 
+    private static String mApAuthInfo;
+
     /**
      * 初始化接口
      *
@@ -33,20 +35,40 @@ public class ModooHelper {
         mInited = true;
     }
 
+    public static Context getContext() {
+        return mContext;
+    }
+
+    /**
+     * 支付宝登陆，需要通过外部方式获取授权请求参数
+     * 获取授权请求参数后，调用该接口
+     */
+    public static void setAPAuthInfo(String authInfo) {
+        mApAuthInfo = authInfo;
+    }
+
+    public static String getAPAuthInfo() {
+        return mApAuthInfo;
+    }
+
     /**
      * 设置登录回调
+     * 后续建议使用 login(LoginType type, LoginCallback callback)
      *
      * @param callback 回调接口
      */
+    @Deprecated
     public static void setLoginCallback(LoginCallback callback) {
         mLoginCallback = callback;
     }
 
     /**
      * 登录接口
+     * 后续建议使用 login(LoginType type, LoginCallback callback)
      *
      * @param type 登录类型，目前支持微信
      */
+    @Deprecated
     public static void login(LoginType type) {
         if (mInited) {
             if (!hasInitLoginCallback()) {
@@ -55,6 +77,24 @@ public class ModooHelper {
                 return;
             }
             LoginManager.getInstance().login(type, mLoginCallback);
+        } else {
+            if (mContext == null) {
+                LogUtil.e(TAG, "Please first invoke the init");
+                return;
+            }
+            Toast.makeText(mContext, ResUtils.getStringId(mContext, "modoo_init_first"), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 设置用户登录
+     *
+     * @param type     登陆类型，目前支持微信和支付宝
+     * @param callback 回调函数
+     */
+    public static void login(LoginType type, LoginCallback callback) {
+        if (mInited) {
+            LoginManager.getInstance().login(type, callback);
         } else {
             if (mContext == null) {
                 LogUtil.e(TAG, "Please first invoke the init");

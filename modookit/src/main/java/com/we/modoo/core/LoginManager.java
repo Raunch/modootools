@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.we.modoo.callback.LoginCallback;
+import com.we.modoo.login.APLogin;
 import com.we.modoo.login.ILogin;
 import com.we.modoo.login.WechatLogin;
 
@@ -36,6 +37,8 @@ public class LoginManager {
     private void createLoginInstance(LoginType type) {
         if (type.equals(LoginType.Wechat)) {
             mLogin = WechatLogin.getInstance();
+        } else if (type.equals(LoginType.AliPay)) {
+            mLogin = APLogin.getInstance();
         }
     }
 

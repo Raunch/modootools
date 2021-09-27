@@ -15,7 +15,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -25,6 +25,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.21'
+    compileOnly 'com.we.sdk:alipaySdk:15.7.9-20200727142846'
 }
 
 
@@ -33,7 +34,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: uri("./Upload-VegaSdk"))
-            pom.version = "1.1.0"
+            pom.version = "1.1.1"
             pom.artifactId = "modoosdk"
             pom.groupId = "com.we.modoo"
             pom.name = "Modoosdk"

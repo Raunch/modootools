@@ -4,5 +4,6 @@ public enum  LoginType {
     Wechat,
     QQ,
     Mobile,
-    Vistor
+    Vistor,
+    AliPay
 }
