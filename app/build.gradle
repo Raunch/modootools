@@ -57,5 +57,5 @@ dependencies {
 //    implementation 'com.we.modoo:modoosdk:1.0.8'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.21'
 
-    implementation 'com.we.sdk:alipaySdk:15.7.9-20200727142846'
+//    implementation 'com.we.sdk:alipaySdk:15.7.9-20200727142846'
 }

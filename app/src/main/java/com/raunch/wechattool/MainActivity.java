@@ -120,7 +120,7 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
 //            });
             ModooHelper.registerShareCallback(mCallback);
         } else if (view.getId() == R.id.login) {
-            ModooHelper.setAPAuthInfo("apiname=com.alipay.account.auth&app_id=2021002112689xx8&app_name=mc&auth_type=AUTHACCOUNT&biz_type=openservice&methodname=alipay.open.auth.sdk.code.get&pid=20885315387xxx721&product_id=APP_FAST_LOGIN&scope=kuaijie&sign_type=RSA2&target_id=1608174601461&sign=kLS23wK0goe6xlBUpVTiXOnXtO%2BdtBm9MsXnXV6ftRvq4CbSIWgQ%2F%2FqCpeHp%2BQOev4UeQ0FBgxv665tQhb%2Fjcu2zdi6q0vcuM48QSS1HmpQY7rYyS%2Bk0ZxTj%2BJVlFStP9TodnYj%2F5wLVkVMXfNiu%2B1bx1%2FZu7Za1W%2FWjc57rsHKTG5gCDDzj9twZRaMB9tFPfQ51s1IIr1LlOuo8GVfdyQcIEiOcqcsoX8Em62%2FyDABKKUOf8VvkFLnT%2B64CcC1f%2FoqXVV8zViXCD%2BfJePE%2BHzUZD%2BI8WMlxW77kiGcTGTWBRyclg9FD%2FxGgzFAHRRSjPbQUkdyuZ5puJU6DvUXAzA%3D%3D");
+            ModooHelper.setAPAuthInfo("apiname=com.alipay.account.auth&app_id=2021002180685814&app_name=mc&auth_type=AUTHACCOUNT&biz_type=openservice&methodname=alipay.open.auth.sdk.code.get&pid=2088531538720721&product_id=APP_FAST_LOGIN&scope=kuaijie&sign_type=RSA2&target_id=1632878740260&sign=jfEcsUsKY5E4eaAnm0FDzYRKB%2BTiiFcPComq3dF8tIt9MzxCe2EgyrLqeJCgzs143cVMQAFJRvk1QFqbWsPtRTGdfHRrC6qtIvr3G3Yzh9JV6f%2FmNUBelAGDWwLhtj3kUIvBzwEvDW4EeMACR9I9873%2BvUZ%2B0EnzsvW42jY9Er3cB2jkraSP%2FTVpH03Dc1rrhIq2yZkYdc2mftdZCXw8KZdSCFQjPdQrx2vuILAuExpL%2FjIlqFJ53G6XHiaTsUGeCooXVP%2FQa23SdGM%2F8MtLzfOhk%2FNdPjNGojbSzpwORyKIupvoiIF7DzuodY0Vq%2FR5E5han4pTMFIm%2BaICi3SFlQ%3D%3D");
             ModooHelper.login(LoginType.AliPay, new LoginCallback() {
                 @Override
                 public void loginSuccess(String info) {
@@ -137,22 +137,22 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
                     Toast.makeText(MainActivity.this, "failed : " + result, Toast.LENGTH_SHORT).show();
                 }
             });
-            ModooHelper.login(LoginType.Wechat, new LoginCallback() {
-                @Override
-                public void loginSuccess(String info) {
-                    Toast.makeText(MainActivity.this, "success: " + info, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void loginCancel(String result) {
-                    Toast.makeText(MainActivity.this, "cancel: " + result, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void loginFailed(String result) {
-                    Toast.makeText(MainActivity.this, "failed : " + result, Toast.LENGTH_SHORT).show();
-                }
-            });
+//            ModooHelper.login(LoginType.Wechat, new LoginCallback() {
+//                @Override
+//                public void loginSuccess(String info) {
+//                    Toast.makeText(MainActivity.this, "success: " + info, Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void loginCancel(String result) {
+//                    Toast.makeText(MainActivity.this, "cancel: " + result, Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void loginFailed(String result) {
+//                    Toast.makeText(MainActivity.this, "failed : " + result, Toast.LENGTH_SHORT).show();
+//                }
+//            });
         } else if (view.getId() == R.id.share_image_one) {
             //分享图片，通过资源id方式
             ModooHelper.shareImageByResId(ShareType.WeChat, mShareType, R.mipmap.xuanchuan);
